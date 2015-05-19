@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hello, World</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.12.2/react.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.12.2/JSXTransformer.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/immutable/3.7.2/immutable.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.min.js"></script>
+	
+</head>
+
+<body>
+	<script type="text/jsx">
+		var data = {
+				width: "12cm",
+				height: "4cm",
+				cx: 600,
+				cy: 200,
+				r: 100,
+				fill: "blue",
+				stroke: "red",
+			};
+		var App = React.createClass({
+		getDefaultProps: function() {
+		},
+		onChange: function() {
+			return this.props.strokeWidth =  "10";
+		},
+		render:function(){
+			/*var data = {
+				"circle": {
+					"props": [
+						{"cx": "600"},
+						{"cy": "200"},
+						{"r": "100"},
+						{"fill": "blue"}
+					]
+				}
+			};*/
+			var dat = this.props.text;
+			console.log(dat);
+			var map1 = Immutable.Map(dat.data);
+			console.log(map1.get('cx'));
+			//var Immutable = require('immutable');
+
+			return (
+				<div>
+				<svg width={map1.get("width")} height={map1.get('height')} viewBox="0 0 1200 400" >
+					<circle cx={map1.get('cx')} cy={map1.get('cy')} r={map1.get('r')} stroke="red" fill={map1.get('fill') onClick = {map1.get("stroke")}/>
+				</svg>
+				</div>
+			);
+		}
+	});
+
+	React.render(<App text={{data}}/>, document.body);
+	</script>
+
+</body>
+</html>
